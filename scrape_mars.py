@@ -3,6 +3,7 @@ import requests
 from splinter import Browser
 import pymongo
 import pandas as pd
+from pprint import pprint
 
 
 # def init_browser():
@@ -20,7 +21,8 @@ def scrape():
         "paragraph": first_news_p,
         "image_URL": featured_image(browser),
         "facts": mars_facts()
-        # add images and hemisphere stuff here
+        # "hemispheres": hemisphere(browser)
+
     }
 
     return mars_data
@@ -70,3 +72,28 @@ def mars_facts():
     df.set_index('Attribute')
 
     return df.to_html()
+
+# THE HTML STARTED TO BREAK BEYOND THIS 
+
+# def hemisphere(browser):
+#     url_jpl = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+#     browser.visit(url_jpl)
+#     html = browser.html
+#     hemi_soup = BeautifulSoup(html, 'html.parser')  
+#     hemi_links = []
+#     links = browser.links.find_by_partial_text('Hemisphere Enhanced')
+#     links[0].click()
+#     html = browser.html
+#     image_soup = BeautifulSoup(html, 'html.parser')
+#     img_url_1 = image_soup.find('div', class_='downloads').a['href']
+#     img1_title = image_soup.find_all('h2', class_= 'title')
+#     img1_title = img1_title[0].get_text()
+#     hemisphere = {}
+#     hemisphere["title"]=img1_title
+#     hemisphere["img_url"]=img_url_1
+#     hemi_links.append(hemisphere)
+    
+#     pprint(hemisphere)
+#     browser.back()
+
+#     return hemi_links
