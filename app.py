@@ -29,7 +29,7 @@ def scrape():
     mars_data = scrape_mars.scrape()
     print(mars_data)
     mars.update({}, mars_data, upsert = True)
-    return "Did that work???"
+    return "I think scraping worked!"
 
 
 if __name__ == "__main__":
